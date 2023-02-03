@@ -1,0 +1,204 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{xifthen}
+\usepackage{xparse}
+\usepackage{amsmath, amssymb}
+\usepackage{lipsum}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%  
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+
+\NewDocumentEnvironment{homeworkProblem}{s m}{
+    \IfBooleanT{#1}{\newpage}
+    \section{Problem \arabic{homeworkProblemCounter} {\small (#2)}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Instructor
+%   - Class number
+%   - Name
+%   - Student ID
+
+\newcommand{\hmwkTitle}{Homework\ \#10}
+\newcommand{\hmwkDueDate}{September 18, 2022}
+\newcommand{\hmwkClass}{Probability and Mathematical Statistics}
+\newcommand{\hmwkClassInstructor}{Professor Ziyu Shao}
+
+\newcommand{\hmwkClassID}{\circled{0}}
+
+\newcommand{\hmwkAuthorName}{Zhu Zhelin}
+\newcommand{\hmwkAuthorID}{2021533077}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\\  \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 11:59am}\\
+   \vspace{2in}\Huge{\hmwkClassID}\\   
+   \vspace{2in}
+}
+
+\author{
+	Name: \textbf{\hmwkAuthorName} \\
+	Student ID: \hmwkAuthorID}
+\date{}
+
+
+\renewcommand{\part}[1]{\textbf{\large Part (\alph{partCounter})}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\Large Solution}}
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+% Problem 1
+\begin{homeworkProblem}{{\color{blue}mention the source of question}, \textit{e.g.}, BH CH0 \#1}
+\begin{enumerate}[(a)]
+	\item $E(X|X\leq 1)=\sum k(P(X=k|X\geq 1))=\sum\frac{kP(X=k,X\geq 1)}{P(X\geq 1)}=\sum\frac{ke^{-\lambda }(\lambda)^{k}}{k!(1-e^{-\lambda}}=\frac{\lambda}{1-e^{-\lambda}}$
+	\item \begin{equation}
+	\begin{aligned}
+	&Var(X|X\geq 1)=E(X^{2}|X\geq 1)-(E(X|X\geq 1))^{2}\\ \notag
+	=&\sum_{k=0}^{\infty}\frac{k^{2}e^{-\lambda}\lambda^{k}}{k!(1-e^{-\lambda})}-\sum\frac{ke^{-\lambda}\lambda^{k}}{k!(1-e^{-\lambda})^{2}}
+	\\=&\frac{\lambda^{2}+\lambda}{1-e^{-\lambda}}-\frac{\lambda^{2}}{(1-e^{-\lambda})^{2}}
+	\end{aligned}
+\end{equation}
+\end{enumerate}
+	
+\end{homeworkProblem}
+
+% Problem 2
+\begin{homeworkProblem}*{BH CH0 \#2}
+	\begin{enumerate}[(a)]
+\item let $Y=X^{2}$ and $X\sim unif(0,1)$ then $E(\frac{X}{X+Y})=E(\frac{1}{X+1})=\int_{0}^{1}\frac{x}{x+1}dx=1-\ln 2$$,\frac{E(X)}{E(X+Y)}=\frac{\frac{1}{2}}{\frac{1}{2}+\frac{1}{3}}=\frac{3}{5}$		
+\item it is true,since they are iid we can know $E(\frac{X}{X+Y})=E(\frac{Y}{X+Y})$(by symmetry), since add them up you can get E($\frac{X+Y}{X+Y}$)=1,so $E(\frac{X}{X+Y})=\frac{1}{2}$,then the rhs $\frac{E(X)}{E(X+Y)}=\frac{E(X)}{E(X)+E(Y)}$ since X and Y are iid,so it is equal to  $\frac{1}{2}$ lhs equal to rhs so it is true.
+\item let $T$ be  (X+Y),let $W$ be $\frac{X}{X+Y}$  $X$ and $Y$ are independent ,and $\sim Gamma(a,\lambda)$ and $\sim Gamma(b,\lambda)$,T and W are independent,so does $T^{c}$ and $W^{c}$,so we have $E(T^{c}W^{c})=E(T^{c})E(W^{c})$,so $E(X^{c})=E((X+Y)^{c})E((\frac{X}{X+Y})^{c})$,so $\frac{E(X^{c})}{E(X+Y)^{c}}=E((\frac{X}{X+Y})^{c})$ 
+\end{enumerate}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}*{BH CH0 \#3}
+	\begin{enumerate}[(a)]
+	\item let X be $\frac{T_1}{T_2}$ Y be $T_1+T_2$ the jocabbian of $|\frac{\partial(t1,t2)}{\partial(x,y)}|=\frac{y}{(x+1)^{2}}$
+
+	$f_{X,Y}(x,y)=(\lambda_1)^{2}e^{-\lambda_1y}y\frac{1}{(x+1)^{2}}$ it can be divided into $f(x)\cdot g(y)$ so it is independent
+	\item using lotp,this is to compute $\int _{0}^{\infty}P(T_1< T_2|T_2=t_2)f_{T_2}(t_2)dt_2=\int_{0}^{\infty}(1-e^{-\lambda_1t_2})\lambda_2e^{-\lambda_2t_2}dt_2=\int_{0}^{\infty}\lambda_2e^{-\lambda_2t_2}-\lambda_2e^{-(\lambda_1+\lambda_2)t_2}dt_2=\frac{\lambda_1}{\lambda_1+\lambda_2}$,especially when $\lambda_1=\lambda_2$ it is equal to $\frac{1}{2}$
+\item it is equal to find the minum expectation of wait and serve,to calculate the wait time $E(min(T_1,T_2))$ min $(T_1,T_2)$ satisfy $\sim Expo(\lambda_1+\lambda_2)$ so the expectation is $\frac{1}{\lambda_1+\lambda_2}$ then the wait time,suppose the random variable of waiting time is W $f_{W}(w)=f_{W}(w|T_1<T_2)P(T_1<T_2)+f_{W}(w|T_1\geq T_2)P(T_1\geq T_2)$ conditional on$T_1<T_2$ it is $Expo(\lambda_1)$ conditional on $T_1\geq T_2$  the W is $Expo(\lambda_2)$ so the expectation of serving time is $\frac{2}{\lambda_1+\lambda_2}$,add them up ,they are totally $\frac{3}{\lambda_1+\lambda_2}$
+\end{enumerate}
+\end{homeworkProblem}
+\begin{homeworkProblem}*{BH CH0 \#4}
+	\begin{enumerate}[(a)]
+\item let $I_j$ is the position of $j_{th}$ can form a sequence of "CATCAT",the total sequence $E(\sum I_j)=E(I_1+I_2+I_3\cdots +I_n)=110(p_1p_2p_3)^{2}$,$E(I_j)=(p_1p_2p_3)^{2}$
+\item considering when the first A appears before C ,it is similiar as FS distribution each trial one by one,if it isn't A and C then continue which has probability $1-p_1-p_2$ when first A  happen it finish  so the total probability is $\sum_{t=0}^{\infty}(1-p_1-p_2)^{t}p_1=\frac{p_1}{p_1+p_2}$
+\item the prior distribution of $p$ is $Beta(1,1)$ after observing the data ,in the observed data the number of success is updated by 1,and the number of failure is updated by 2,using the Beta-Binomial conjugacy we can know the posterior is $Beta(2,3)$ let X be the number of C in the sequence we've observed,to calculate it first we get $f(p|X=1)=\frac{p(1-p)^{2}}{\beta(2,3)}$,then $\int_{0}^{1}\frac{p^{2}(1-p)^{2}}{\beta(2,3)}dp=0.4$  
+\end{enumerate}
+\end{homeworkProblem}
+\begin{homeworkProblem}*{BH CH0 \#5}
+	\begin{enumerate}[(a)]
+		\item let the event of HT happen be divided into two independent event $W_1$ be the number of tosses until first H happens which satify $FS(p)$ ,and $W_2$ be the number of tosses after the first H happen first T happen which satift $FS(1-p)$ ,so $E(W_1+W_2)=E(W_1)+E(W_2)=\frac{1}{(1-p)}+\frac{1}{p}$ 
+		\item using the conditional expectation let $W_{HH}$ be the number of toss when first HT happens $E(W_{HH})=E(W_{HH}|$first toss H)$P($first toss H)+E($W_{HH}$|first toss T)P(first toss T),\\
+		$E(W_{HH}|$first toss H)=$E(W_{HH}|)$first toss H,second toss H)P(second H)+E($W_{HH}|$first toss H,second toss T) P(second toss T)=2p+(E($W_{HH}$)+2)(1-p) so the total E is $\frac{1}{p}+\frac{1}{p^{2}}$
+		\item for (a) the total expectation is $\int_{0}^{1} E(W_{HH}|p)f(p)dp=\int_{0}^{1}(\frac{1}{p}+\frac{1}{1-p})(\frac{p^{a-1}(1-p)^{b-1}}{\beta(a,b)})dp=\frac{\beta(a-1,b)+\beta(a,b-1)}{\beta(a,b)}=\frac{\Gamma(a-1)\Gamma(a+b)}{\Gamma(a+b-1)\Gamma(a)}+\frac{\Gamma(b-1)\Gamma(a+b)}{\Gamma(a+b-1)\Gamma(a)}=\frac{a+b-1}{a-1}+\frac{a+b-1}{b-1}$
+ for(b) the total expectation is $\int_{0}^{1}(\frac{1}{p}+\frac{1}{p^{2}})\frac{p^{a-1}(1-p)^{b-1}}{\beta(a,b)}dp=\frac{\beta(a-1,b)}{\beta(a,b)}+\frac{\beta(a-2,b)}{\beta(a,b)}=\frac{a+b-1}{a-1}+\frac{(a+b-1)(a+b-2)}{(a-1)(a-2)}$
+	\end{enumerate}
+\end{homeworkProblem}
+\end{document}

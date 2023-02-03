@@ -1,0 +1,302 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{xifthen}
+\usepackage{xparse}
+\usepackage{amsmath, amssymb}
+\usepackage{lipsum}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%  
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+
+\NewDocumentEnvironment{homeworkProblem}{s m}{
+    \IfBooleanT{#1}{\newpage}
+    \section{Problem \arabic{homeworkProblemCounter} {\small (#2)}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Instructor
+%   - Class number
+%   - Name
+%   - Student ID
+
+\newcommand{\hmwkTitle}{Homework\ \#1}
+\newcommand{\hmwkDueDate}{September 18, 2022}
+\newcommand{\hmwkClass}{Probability and Mathematical Statistics}
+\newcommand{\hmwkClassInstructor}{Professor Ziyu Shao}
+
+\newcommand{\hmwkClassID}{\circled{0}}
+
+\newcommand{\hmwkAuthorName}{Zhu Zhelin}
+\newcommand{\hmwkAuthorID}{2021533077}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\\  \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 11:59am}\\
+   \vspace{2in}\Huge{\hmwkClassID}\\   
+   \vspace{2in}
+}
+
+\author{
+	Name: \textbf{\hmwkAuthorName} \\
+	Student ID: \hmwkAuthorID}
+\date{}
+
+
+\renewcommand{\part}[1]{\textbf{\large Part (\alph{partCounter})}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\Large Solution}}
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+% Problem 1
+\begin{homeworkProblem}{{\color{blue}mention the source of question}, \textit{e.g.}, BH CH0 \#1}
+
+	\begin{enumerate}[(a)]
+		
+		
+		
+		\item To prove the equation that $\left\{\begin{array}{c}n+1 \\ k\end{array}\right\}=\left\{\begin{array}{c} n \\ k-1\end{array}\right\}+k\left\{\begin{array}{l} n \\ k\end{array}\right\}.$we can divide the circumstances into two parts (the two circumstances differ between how to assign the last person)\\
+\begin{enumerate}[i]
+\item if the previous $n$ people were divided into $k-1$ groups,since at last there should be $k$ groups ,so the last person must be alone in the new $k_{th}$ group,under this circumstances there should be$\left\{\begin{array}{c} n \\ k-1\end{array}\right\}\cdot 1$(the former is the solution for previous $n$ people,the latter is the solution to assign the last person under this circumstance) 
+\item if the previous $n$ people were divided into $k$ groups,the last person can be assigned to any of the groups,so there should be $\left\{\begin{array}{c}n \\ k\end{array}\right\}\cdot k$(the former is the solution to assign n person into k groups,the latter is to assign the last person into any of k groups). 
+\end{enumerate} 
+	
+		When considering the last person,there are just two circumstances,since all the other circumstances can't satisfy the request.(it is easy to think that there must be at least $k-1$ groups and no more than $k$ groups when assigning the last person),and these two circumstances are mutex events.(I’m either in a group by myself or I’m not.)
+		so we can plus them together,then $\left\{\begin{array}{c}n+1 \\ k\end{array}\right\}=\left\{\begin{array}{c} n \\ k-1\end{array}\right\}+k\left\{\begin{array}{l} n \\ k\end{array}\right\}.$
+	
+	\item  We can suppose there are $n+1$ people to be assigned (includes me ),then we can divide the $n+1$people into $k+1$ groups,and first I join in one group ,then I randomly choose $j$ people from the other $n$ people which aren't in my group(on the other words:in another k groups)$(k\leq j\leq n)$ for any $j$ I can do the similar assignment(divide them into $k$ groups),and these circumstances are mutex events according to the number of $j$,we can add it all,
+which are $\sum_{j=k}^n\left(\begin{array}{l}
+	n \\
+	j
+	\end{array}\right)\left\{\begin{array}{l}
+	j \\
+	k
+	\end{array}\right\}$
+	after assigning other people,the $k+1$ groups are finally assigned,which are equal to $\left\{\begin{array}{c} n+1\\ k+1\end{array}\right\}$,thus Q.E.D.
+	\end{enumerate}	 
+\end{homeworkProblem}
+
+% Problem 2
+\begin{homeworkProblem}*{BH CH0 \#2}
+\solution\\
+
+According to the theory $P_{\text {naive }}(A)=\frac{|A|}{|S|}=\frac{\text { number of outcomes favorable to } A}{\text { total number of outcomes in } S} \text {. }$
+	first we can find total number of outcomes,
+	\\define $A_j$:the event that $j$ words compose of norepeatwords ,
+	\\the total outcomes are $\bigcup_{j=1}^{26} A_j=26+26\cdot25 +\dots 26!$,and the number of outcomes favorable is equal to$26!$
+	so the P is equal to
+	$$
+	\begin{aligned}
+		&\frac{26!}{26+26\cdot25+\cdots+26!}\\
+		=&\frac{1}{\frac{1}{25!}+\frac{1}{24!}+\cdots+1}\approx\frac{1}{e}
+	\end{aligned} 
+	$$
+	(it can easily be obtained from the $e^x$ McLaughlin unfolded when x=1)
+
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}*{BH CH0 \#3}
+	\begin{enumerate}[(a)]
+		\item for any $x_j (1\leq j\leq n)$ there are n choices can be any of the $a_i(1\leq i\leq n)$,so there should be $n^n$ samples
+		\item this is an unordered sampling with replacement problem ,it has at all $\binom{n+k-1}{k}=\binom{2n-1}{n}$ the following is how to get this answer. 
+		\\considering  $b_j(1\leq j\leq n)$ represents the number of $a_j$ I choose
+		then the following sentence must satify that 
+		$
+		\begin{cases}
+			b_1+b_2+\cdots+b_n=n\\
+			b_j\in \mathbb{N}(1\leq j\leq n)
+		\end{cases}
+		$
+	then considering the ${c_j}=b_j+1(1\leq j\leq n)$,which satify that
+	
+	$$
+	\begin{cases}
+		c_1+c_2+\cdots+c_n=2n\\
+		c_j\in \mathbb{N^+}(1\leq j\leq n)
+		\end{cases}
+		$$
+it is equal to seperate $2n$ balls into $n$ groups,so there are$\binom{2n-1}{n-1}$,Q.E.D
+\item the examples are as follows
+\begin{enumerate}
+	\item[(1)]considering $b_1$ if $\left\{x_n\right\}$ takes all the numbers in the $\left\{a_n\right\}$ ,it is as likely as possible,which has $p_1=\frac{n!}{n^n}$
+\item[(2)] considering $b_2$ if all the $x_j(1\leq j\leq n)=1$ it is as unlikely as possible,which has $p_2=\frac{1}{n^n}$
+\end{enumerate}
+then $\frac{p_1}{p_2}=n!$,there are $n$ different numbers ,so choosing things as the same possibility as $p_2$ has n circumstances,so the possibility is $\frac{n!}{n}=(n-1)!$
+	\end{enumerate}
+	
+\end{homeworkProblem}
+\begin{homeworkProblem}*{BH CH0 \#4}
+	\solution
+	
+	We can denote the stick as a line range from $(0,1)$ in number axis,and has two breaking points names $x_1 and x_2(x_1\leq x_2)$ which break the stick into three pieces
+	the three pieces are $x_1,x_2-x_1,1-x_2$ which is equal to $x,y,z(x,y,z>0),x+y+z=1$ in $x-y-z$ plane if they can form a triangle,they must satify that
+
+	$$
+	\begin{cases}
+	x_1+(x_2-x_1)>1-x_2\\
+	x_1+(1-x_2)>x_2-x_1 \\
+	x_2-x_1+(1-x_2)>x_1 
+
+	\end{cases}
+$$
+then simplify these cases we can get that
+$$
+\begin{cases}
+1>x_2>\frac{1}{2} &(0<z<\frac{1}{2})\\
+0<x_2-x_1<\frac{1}{2} &(0<y<\frac{1}{2}) \\
+0<x_1<\frac{1}{2} &(0<x<\frac{1}{2})
+
+\end{cases}
+$$
+and using the geometry character,we can easily get what we want is one quarter of the whole triangle plane,so p is $\frac{1}{4}$
+\begin{figure}[htbp]
+	\centering
+	\includegraphics{hwp4.eps}
+	\caption{the solution space}
+\end{figure}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}*{BH CH0 \#5}
+	\begin{enumerate}
+		\item[(a)] since there are $k$ person ,at least one birthday match is the reverse side of no match which can be represented by $e_k(p_1,p_2,p_3,\cdots,p_n)\cdot k!$,so total probablity is $1-e_k(p_1,p_2,\cdots,p_n)\cdot k!=1-e_k(\textbf{p})\cdot k!$
+		\item[(b)]  considering there are only two days and only two people,$p_1+p_2=1$,then the possibility of birthday match is $1-p_1(1-p_1)$ which minimize at $p_1=0.5$,then considering that for $365$ days,there exist $i s.t. p_i=1$,then the Probability of  birthday match is 1,considering this two circumstances ,we can intuitively get the conclusion that when you choose all the $p_i$ to the same,you will minimize the possibility.
+		\item[(c)]  the problems can be divided into three circumstances:
+		\begin{enumerate}
+			\item[(1)] terms with both $x_1$and $x_2$ which means has $x_1x_2$
+			\item[(2)] terms with only one of $x_1$ and $x_2$,which means $x_1 or x_2$
+			\item[(3)] terms with none of $x_1$ and $x_2$
+		   
+		\end{enumerate}
+		if we plus all the circumstances together we will get the RHS,and since these three circumstances contain all the circumstances,the LHS=RHS.
+		\\ supposing there exist the circumstance that $r_1\neq r_2(i\neq j)$,and this is the minimal birthday match circumstance,then I want to find the contradiction. \\
+		then considering the circumstances that $r_1\neq r_2$,if $r_1\neq r_2$ we just consider $r_1 and r_2 $as variables $e_k\left(r_1, \ldots, r_n\right)=r_1 r_2 e_{k-2}\left(r_3, \ldots, r_n\right)+\left(r_1+r_2\right) e_{k-1}\left(r_3, \ldots, r_n\right)+e_k\left(r_3, \ldots, r_n\right)$
+		which can be simplified as $r_1r_2 \cdot k_1+c$ where $k_1>0,r_1+r_2=c_2$(a constant which doesn't change) then $r_1 r_2 \leq\left(\left(r_1+r_2\right) / 2\right)^2=r_1 r_2$(we can know that if the other $r_i 3\leq i\leq 365$ is fixed ,if and only if $r_1=r_2$,the match will be smallest under this circumstance),and when $r_1=r_2$ the birthday match probabilty will be smaller,which contradicts the supposition,thus we can easily get the answer that for any $(r_i,r_j)$ series we will use their average to replace meaning $r_i=r_j,(i\neq j)$ ,it will minimize, do it for n times,the function will minimize.
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}*{BH CH0 \#6}
+
+first,we can translate this question into the form that the probability of putting n different balls into $108$ different boxes(the empty boxes are not allowed),and to calculate the probablity,and according to $P_{\text {naive }}(A)=\frac{|A|}{|S|}=\frac{\text { number of outcomes favorable to } A}{\text { total number of outcomes in } S} \text {. }$)
+I can get the following answer 
+$$
+P=\frac{108!\cdot S(n,108)}{108^n}
+$$
+and $S(n,108)$ is the $2_{th}$ stringling number,represent the ways to assign n different balls into 108 same boxes.Then I just need to calculate the ways to put n differnet balls into different boxes(empty boxes are not allowed)
+
+First I define the event $A_j$:the $j_{th}$ box is empty ,then i use the inclusion-exclusion principle to solve this problem
+Since if empty is allowed ,there should be $108^n$ ways,then I want to calculate the circumstances empty exists(equal to $|\bigcup_{j=1}^{108} A_j|$),and to add it all,we can get the total number of outcomes favorable to A which are $\sum_{i=0}^{108}(-1)^i\binom{108}{i}(108-i)^n$
+thus the probability is $\frac{\sum_{i=0}^{108}(-1)^i\binom{108}{i}(108-i)^n}{108^n}$
+\begin{figure}[htbp]
+	\centering
+	\includegraphics{hwp6.eps}
+	\caption{solution:n=823}
+
+\end{figure}
+\end{homeworkProblem}
+
+\end{document}

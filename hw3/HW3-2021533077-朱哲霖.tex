@@ -1,0 +1,315 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{xifthen}
+\usepackage{xparse}
+\usepackage{amsmath, amssymb}
+\usepackage{lipsum}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%  
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+
+\NewDocumentEnvironment{homeworkProblem}{s m}{
+    \IfBooleanT{#1}{\newpage}
+    \section{Problem \arabic{homeworkProblemCounter} {\small (#2)}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Instructor
+%   - Class number
+%   - Name
+%   - Student ID
+
+\newcommand{\hmwkTitle}{Homework\ \#3}
+\newcommand{\hmwkDueDate}{October 10, 2022}
+\newcommand{\hmwkClass}{Probability and Mathematical Statistics}
+\newcommand{\hmwkClassInstructor}{Professor Ziyu Shao}
+
+\newcommand{\hmwkClassID}{\circled{0}}
+
+\newcommand{\hmwkAuthorName}{Zhu Zhelin}
+\newcommand{\hmwkAuthorID}{2021533077}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\\  \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 11:59am}\\
+   \vspace{2in}\Huge{\hmwkClassID}\\   
+   \vspace{2in}
+}
+
+\author{
+	Name: \textbf{\hmwkAuthorName} \\
+	Student ID: \hmwkAuthorID}
+\date{}
+
+
+\renewcommand{\part}[1]{\textbf{\large Part (\alph{partCounter})}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\Large Solution}}
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+% Problem 1
+\begin{homeworkProblem}{, BH CH0 \#1}
+\begin{enumerate}[(a)]
+	\item To solve this,we want to find out $P(D|T_1,T_2,\cdots,T_n)=\frac{P(T_1,T_2,T_3,\cdots,T_n|D)}{P(T_1,T_2,\cdots,T_n)}$since the test result is conditionally independent,this is equal 
+	$$\begin{aligned}
+		=&\frac{P(T_1|D)\cdot P(T_2|D)\cdots P(T_n|D)}{P(T_1,\cdots,T_n)}\\
+		=&\frac{P(T_1|D)\cdot P(T_2|D)\cdots  P(T_n|D)}{P(T_1,T_2,\cdots,T_n|D)\cdot P(D)+P(T_1,T_2,\cdots,T_n|D^c)\cdot P(D^c)}\\
+		=&\frac{a^n\times p}{a^n\times p+b^n\times q}(q=1-p)\\
+	\end{aligned}$$
+
+\item We finally want to calculate $P(D|T_1,T_2,\cdots,T_n)$ then using the LOTP, I can get that this equal to$\frac{P(T_1,T_2,\cdots,T_n|D)P(D)}{P(T_1,\cdots T_n)}$
+then I want to calculate it respectively 
+$$
+\begin{cases}
+	P(T_1,T_2,\cdots T_n|D)=P(T|D,G)\cdots P(G)+P(T|D,G^c)\times P(G^c)=\frac{1+a_0^n}{2}\\
+	P(T_1,T_2,\cdots T_n|D^c)=P(T|D,G)\cdot P(G)+P(T|D^c,G^c)P(G^c)=\frac{1+b_0^n}{2}
+
+\end{cases}
+$$
+I can get the final answer is $\frac{(1+a_0^n)\times p}{(1+a_0^n)\times p+(1+b_0^n)\times q}$
+\end{enumerate}
+\end{homeworkProblem}
+
+% Problem 2
+\begin{homeworkProblem}*{BH CH0 \#2}
+\solution\\
+We can first define the shortest path the system work ,$A_1:1,3,A_2:1,5,4,A_3:2,4,A_4:1,5,3$and we can easily get that all the circumstances the system work is that $\cup_{i=1}^3A_i$
+thus we can use the principle of repulsion to figure out the problem,since all the nodes are conditionally independent,so the probability of i machines work and other don't work is equal to $p^i(1-p)^{5-i}$
+$$
+	\begin{aligned}
+&P(A_1\cup A_2\cup A_3)\\
+=&P(A_1)+P(A_2)+P(A_3)+P(A_4)-P(A_1\cap A_2)-P(A_1\cap A_3)-P(A_1\cap A_4)-P(A_2\cap A_3)-P(A_2\cap A_4)+\\
+&P( A_2\cap A_3\cap A_4)+P(A_1\cap A_3\cap A_4)+P(A_1\cap A_2\cap A_4)+P(A_1\cap A_2\cap A_3)-P(A_1\cap A_2\cap A_3\cap A_4)
+\\=&2p^5-5p^4+2p^3+2p^2
+\end{aligned}
+$$
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}*{BH CH0 \#3}
+	\solution \\
+
+	\begin{enumerate}[(a)]
+		\item we can get the answer by thinking the last step,the last step can be from 1-6,so we can get it from $p_{n-k},k\in [1,6]$,then $p_n=\frac{1}{6}p_{n-1}+\frac{1}{6}p_{n-2}+\frac{1}{6}p_{n-3}+\frac{1}{6}p_{n-4}+\frac{1}{6}p_{n-5}+\frac{1}{6}p_{n-6}$,then $p_0=1,p_n=0(n<0)$
+		\item to figure out $p_7$ I first figure out $p_1=\frac{1}{6},p_2=\frac{1}{6}p_0+\frac{1}{6}p_1=\frac{7}{36}\cdots$we can finally figure out $p_7=\frac{(\frac{7}{6})^6-1}{6}\approx 0.2536$
+	\item We can calculate the expectation to throw a die may be $\frac{1+2+3+4+5+6}{6}=3.5$,which means throwing a die, we can get 3.5 points in average,also means I can land on 2 out of 7 numbers,and each number I expect to land on is $\frac{1}{3.5}$.  
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}*{BH CH0 \#4}
+	\begin{enumerate}[(a)]
+		\item $P(A_2)=$P(two win)+P(two failure)=$(1-p_1)(1-p_2)+p_1p_2=2p_1p_2-(p_1+p_2)+1$, 
+		$$\begin{aligned}			
+		&\frac{1}{2}+2b_1b_2\\
+		=&\frac{1}{2}+2(q_1-\frac{1}{2})(q_2-\frac{1}{2})
+\\      =&2(\frac{1}{2}-p_1)(\frac{1}{2}-p_2)+\frac{1}{2}
+\\      =&2p_1p_2-(p_1+p_2)+1		
+		\end{aligned}$$
+		thus the lhs=rhs,Q.E.D
+	\item By induction
+	\begin{enumerate}[(i)]
+		\item We can first test when n=2,satisfy(as a proved)
+		\item Then we can assume that when n=k,satisfy $P(A_k)=\frac{1}{2}+2^{k-1}b_1b_2\cdots b_n$
+	\item Then we test $P(A_{k+1})$ using lofp(all the circumstances can be divided into $A_k$and $A_k^c$) $P(A_{k+1})=P(A_{k+1}|A_k)P(A_k)+P(A_{k+1}|A_k^c)P(A_k^c)=q_{k+1}\times P(A_k)+(1-q_{k+1})(1-P(A_{k}))=2q_{k+1}P(A_{k})-P(A_{k})-q_{k+1}+1$,then using the transformation that $q_i=b_i+\frac{1}{2}$ and what we have assumed in $(ii)$,we can get that $P(A_{k+1})=\frac{1}{2}+2^kb_0b_1\cdots b_{k+1}$
+thus proved	\end{enumerate}
+\item Since the trial is independent ,for any n,if we swap the $p_i$and $p_j,i\neq j$,the possibility doesn't change ,so we can assume some $p_i$ to be the last,which doesn't change the result.Then the reccurrence formula will not change under any circumstance,
+that is  $$P(A_{n+1})=P(A_n)\times q_{n+1}+(1-P(A_n))\times (1-q_{n+1})$$,then we can figure out the condition 
+\begin{enumerate}[(i)]
+	\item when $p_i=\frac{1}{2}$ for some i,considering there are n trials we can let $p_{n}=\frac{1}{2}$,then $P(A_{n})=P(A_{n-1})\times\frac{1}{2}+(1-P(A_{n-1}))\times\frac{1}{2}=\frac{1}{2} $for all n,it is the same as calculated by the formulas in (b)
+	\item when $p_i=0$ for any i $q_i=1$ for any i,then $P(A_n)=P(A_{n-1})=P(A_{n-2})=\cdots P(A_1)=1$,the same as (b)
+	\item when $p_i=1$ for all i then $P(A_n)=1-P(A_{n-1})$,so $P(A_n)=P(A_{n-2})$for any n 
+	\begin{equation}
+		P(A_n)=
+	\begin{cases}
+		1 &(n=2k,k\in N)\\
+		0 &(n=2k+1,k\in N)
+	\end{cases}
+\end{equation}
+same as (b) proved ,$\frac{1+(-1)^n}{2}$
+\end{enumerate} 	
+\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}*{BH CH0 \#5}
+
+\begin{enumerate}[(a)]
+	\item We can first define the event that $A_n:$treatment A is assigned on the nth trial,\\
+	$S_n:$the nth is successful ,then using the lofp we can get that $p_n=P(F_n)=P(F_n|A_n)P(A_n)+P(F_n|A_n^c)P(A_n^c)=a\cdot a_n+b(1-a_n)$
+	\\thus $p_n=(a-b)a_n+b$,then to figure out $a_{n+1}=P(A_{n+1})=P(A_{n+1}|A_{n})P(A_n)+P(A_{n+1}|A_{n}^c)P(A_{n}^c)=a\cdot a_n+(1-b)\cdot (1-a_n)=(a+b-1)a_n+1-b$
+thus Q.E.D
+	\item$p_{n+1}=(a-b)a_{n+1}+b=(a-b)[(a+b-1)a_n+1-b]+b$,where $a_n=\frac{p_n-b}{a-b}$ ,then $p_{n+1}=(a+b-1)(p_n-b)+(a-b)(1-b)+b$then simplify the equation we can get the result that $p_{n+1}=(a+b-1)p_n+a+b-2ab$
+\item assume the $\lim_{n\to+\infty}p_n$exist,then we can have $\lim_{n\to+\infty}p_n=\lim_{n\to+\infty}p_{n+1}$,so to give limit to each side we can easily get the answer,suppose $\lim_{n\to+\infty}p_n=x$,then $\lim_{n\to+\infty}p_{n+1}=\lim_{n\to+\infty}(a+b-1)p_n+a+b-2ab$,$x=(a+b-1)x+a+b-2ab$,then we can figure out $\lim\limits_{n\to +\infty}p_n=\frac{2ab-a-b}{a+b-2}$
+\end{enumerate}
+
+\end{homeworkProblem}
+\begin{homeworkProblem}*{BH CH0\#6}
+	\large{
+	\begin{enumerate}[(a)]
+		\item I should switch.We can define event that A:initially I choose the door which has car ,B: I choose the correct door which has car,C:I switch,then I want to calculate the $P(B|C)$,using lofp,I can get that $P(B|C)=P(B|A,C)\cdot P(A|C)+P(B|A^c,C)\cdot P(A^c|C)$,since A and C is conditionally indepent,we can get the answer $P(B|C)=0+\frac{1}{3}\cdot\frac{6}{7}=\frac{2}{7}>\frac{1}{7}$(which is the possibility of choosing the right given you don't switch.)
+		\item  I can follow what I define in (a) to calculate the result $P(B|C)=P(B|A,C)P(A|C)+P(B|A^c,C)P(A^c|C)=0\times \frac{1}{n}+\frac{1}{n-1-m}\times \frac{n-1}{n}=\frac{n-1}{n(n-1-m)}$
+	\end{enumerate}
+	}
+\end{homeworkProblem}
+\begin{homeworkProblem}*{BH CH0\#7}
+\solution 
+	\begin{enumerate}[(a)]
+		\item We define the event $A_1:$the car is behind door 1 $A_2$:behind door 2,$A_3$:behind door 3,$B:$I get the car,and the C event is indepent from other events
+		$C$:I switch\\
+		then I want to calculate $P(B|C)=P(B|A_1,C)P(A_1|C)+P(B|A_2,C)P(A_2|C)+P(B|A_3,C)P(A_3|C)=\frac{2}{3}$(if the correct door is in 2 or 3,the p doesn't matter,since monty won't open the true door) 
+		\item We then define the event $D_2$:Monty opens door 2 $D_3$:Monty opens door 3,to calculate $P(B|D_2,C)=P(B|D_2,C,A_1)P(A_1|D_2,C)+P(B|D_2,C,A_2)P(A_2|D_2,C)+P(B|D_2,C,A_3)P(A_3|D_2,C)$
+		$=P(B|D_2,C,A_3)$\\$P(A_3|D_2,C)$
+		using the bayes'rule we can get that $P(A_3|D_2,C)=\frac{P(D_2|A_3,C)P(A_3|C)}{P(D_2|C)}$,$P(D_2|C)=P(D_2|A_1,C)\cdot P(A_1|C)+P(D_2|A_2,C)P(A_2|C)+P(D_2|A_3,C)P(A_3|C)=\frac{1+p}{3}$
+	 so the answer is $\frac{1}{1+p}$
+	 \item the same as (b) has done ,I want to calculate $P(B|D_3,C)=P(B|D_3,C,A_1)P(A_1|D_3,C)+P(B|D_3,C,A_2)P(A_2|D_3,C)+P(B|D_3,C,A_3)P(A_3|D_3,C)$
+	 $=P(B|D_3,C,A_2)P(A_2|D_3,C)$
+	 using the bayes'rule we can get that $P(A_2|D_3,C)=\frac{P(D_3|A_2,C)P(A_2|C)}{P(D_3|C)}$,$P(D_3|C)=P(D_3|A_1,C)\cdot P(A_1|C)+P(D_3|A_2,C)P(A_2|C)+P(D_3|A_3,C)P(A_3|C)=\frac{1+(1-p)}{3}=\frac{2-p}{3}$,so the answer is $\frac{1}{2-p}$
+	\end{enumerate}
+	\end{homeworkProblem}
+\begin{homeworkProblem}*{BH CH0\#8}
+\solution \\
+\large{
+	\begin{enumerate}[(a)]
+\item $P(X\geq 1)=1-P(X=0)=1-e^{-\lambda}$,$P(X\geq 2)=1-P(X=0)-P(X=1)=1-e^{-\lambda}-e^{-\lambda}\lambda$
+\item I want to calculate $P(X=k|X\geq 1)$ using bayes ,we can get that $\frac{P((X=k)\cap (X\geq 1))}{P(X\geq 1)}$
+when $k\leq 0$ we can easily get the possibility :0,when $k\geq 1$we can get the answer that $\frac{e^{-\lambda}\lambda^k}{(1-e^{-\lambda})k!}$
+\end{enumerate}}
+\end{homeworkProblem}
+\begin{homeworkProblem}*{BH CH0\#9}
+\begin{enumerate}[(a)]
+	\item considering the 5 bits,if there are even numbers error happen(no matter whether the last bit happen to be wrong),we can't detect,to prove it,we can assume that if the last number is correct,then changing even number before doesn't change the parity,so we can't detect the error,then if the last bit is changed ,the n-1 bits before will be changed odd bits,which also changes the n-1 bits' parity,we can't detect either,using the same analysis,we can get that odd bits wrong circumstances can be found.
+	So to calculate the probability ,we just figure out the probability even numbers(not include 0) error happen,which is$\binom{5}{2}p^2(1-p)^3+\binom{5}{4}p^4(1-p)\approx 0.073$ 
+\item The same as (a) has proved,we want to figure out the probability of even numbers error happen,$$
+\sum\limits_{k\geq 2,k\mod{2}=0}\binom{n}{k}p^k(1-p)^{n-k}
+$$
+\item $
+\begin{cases}(p+1-p)^n=\sum\limits_{k\geq 0,k\in N}\binom{n}{k}p^k(1-p)^{n-k}=1\\
+	(-p+(1-p))^n=\sum\limits_{k\geq 0,k\in N}\binom{n}{k}p^k(1-p)^{n-k}\times(-1)^{k}=(1-2p)^n
+\end{cases}$
+ \\
+ so we can get the answer by adding $\frac{1+(1-2p)^n}{2}-(1-p)^n$
+\end{enumerate}
+
+\end{homeworkProblem}
+\begin{homeworkProblem}*{BH CH0\#10}
+	\begin{enumerate}[(a)]
+		\item The distribution of $X\bigoplus Y$ equal to $P(X=0|Y=1)P(Y=1)+P(X=1|Y=0)P(Y=0)=\frac{1}{2}$
+		\item To figure out whether notation is independent,I can calculate $P(X\bigoplus Y|X=1)=\frac{1}{2}=P(X\bigoplus Y)$ so it is independent of X 
+		then calculate $P(X\bigoplus Y|Y=1)=(1-p)$,when p=$\frac{1}{2}$,it is independent,when $p\neq\frac{1}{2}$,it is not independent
+	\item To prove that $Y_J$~$Bern(1/2)$,since $X_1,X_2,\cdots,X_n$ are i.i.d,for any subset $J$,we can assume there are $k$ elements,since the definition is $\bigoplus\limits_{j\in J}X_j$is the sum of them,then module 2.We can easily get that $Y_J$ is 1 when there are odd numbers of RVS be 1, $Y_J$ is 0 when there are even numbers of RVS be 1,then we just calculate $$1-\sum\limits_{i\geq 0,i mod 2=0}\binom{k}{i}(\frac{1}{2})^k=\frac{1}{2}$$(simplify the formulas as the combination of$(1+1)^n$and $(1-1)^n$)
+	\\To prove the pairwise independent ,I can first define two arbitrary sets $J_0,J_1$,a subset of ${1,2,3,\cdots n}$,we can divide $J_0\cup J_1$ into $J_0\cap J_1,J_0\cap J_1^c,J_0^c\cap J_1$,each part of them is totally independent,when considering the possibility we can use P($A\cap B$)=P(A)P(B),if$J_0\cap J_1=\emptyset$,which means the rvs they have is totally unrelated,which we can say $Y_{J_0}$is independent of $Y_{J_1}$ ,then we turn to the circumstances when $J_0\cap J_1\neq \emptyset$
+for any result  $$\begin{aligned}
+	&P(Y_{J_0}=a,Y_{J_1}=b)=
+	\\&P(Y_{(J_0\cap J_1)\cup(J_0\cap J_1^c)}=a,Y_{(J_0\cap J_1)\cup(J_0^c\cap J_1)}=b|Y_{J_0\cap J_1}=0)\cdot\frac{1}{2}+\\&P(Y_{(J_0\cap J_1)\cup(J_0\cap J_1^c)}=a,Y_{(J_0\cap J_1)\cup(J_0^c\cap J_1)}=b|Y_{J_0\cap J_1}=1)\cdot \frac{1}{2}
+	\\=&\frac{1}{2} P(1\bigoplus Y_{J_0\cap J_1^c}=a,1\bigoplus Y_{J_0^c\cap J_1}=b)+\frac{1}{2} P(0\bigoplus Y_{J_0\cap J_1^c}=a,0\bigoplus Y_{J_0^c\cap J_1}=b)
+	\\=&\frac{1}{2}\cdot\frac{1}{2}\cdot \frac{1}{2}+\frac{1}{2}\cdot\frac{1}{2}\cdot \frac{1}{2}
+	\\=&P(Y_{J_0}=a)\cdot P(Y_{J_1}=b)
+\end{aligned}$$
+To prove that they are not independent when considering them all,we can just considering $P(Y_{{1,2}}=1,Y_{{1,3}}=1,Y_{{2,3}}=1)=0$ it is obvious that is not equal to $P(Y_{{1,2}}=1)\cdot P(Y_{{1,3}}=1)\cdot P(Y_{{2,3}}=1)=\frac{1}{8}$,thus proved.
+\end{enumerate}
+\end{homeworkProblem}
+\end{document}

@@ -1,0 +1,269 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{xifthen}
+\usepackage{xparse}
+\usepackage{amsmath, amssymb}
+\usepackage{lipsum}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%  
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+
+\NewDocumentEnvironment{homeworkProblem}{s m}{
+    \IfBooleanT{#1}{\newpage}
+    \section{Problem \arabic{homeworkProblemCounter} {\small (#2)}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Instructor
+%   - Class number
+%   - Name
+%   - Student ID
+
+\newcommand{\hmwkTitle}{Homework\ \#0}
+\newcommand{\hmwkDueDate}{September 2, 1999}
+\newcommand{\hmwkClass}{Probability and Mathematical Statistics}
+\newcommand{\hmwkClassInstructor}{Professor Ziyu Shao}
+
+\newcommand{\hmwkClassID}{\circled{0}}
+
+\newcommand{\hmwkAuthorName}{Xiao Ming}
+\newcommand{\hmwkAuthorID}{12345678}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\\  \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 11:59am}\\
+   \vspace{2in}\Huge{\hmwkClassID}\\   
+   \vspace{2in}
+}
+
+\author{
+	Name: \textbf{\hmwkAuthorName} \\
+	Student ID: \hmwkAuthorID}
+\date{}
+
+
+\renewcommand{\part}[1]{\textbf{\large Part (\alph{partCounter})}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\Large Solution}}
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+% Problem 1
+\begin{homeworkProblem}{{\color{blue}mention the source of question}, \textit{e.g.}, BH CH0 \#1}
+
+Namdui ligula, fringilla a, euismod sodales, sollicitudin vel, wisi. Morbi auctor loremnonjusto. Nam lacus libero, pretium at, lobortis vitae, ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna, vitae ornare odio metus a mi. Morbi ac orci et nisl hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque a nulla. Cumsociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam tincidunt urna. Nulla ullamcorper vestibulum turpis. Pellentesque cursus luctus mauris. 
+
+\end{homeworkProblem}
+
+% Problem 2
+\begin{homeworkProblem}*{BH CH0 \#2}
+
+{\color{blue}
+NOTICE: 
+\begin{enumerate}
+	\item 
+	Start the next question always on a newpage by adding a ``star'' in the argument list.
+	\item
+	Use ``Solution'' to separate the problem and the solution.
+	\item
+	Answer the sub-problem one by one clearly.
+\end{enumerate}}
+
+A building has $n$ floors, labeled $1, 2, . . . , n$.
+At the first floor, $k$ people enter the elevator, which is going up and is empty before they enter.
+Independently, each decides which of floors $2, 3, . . . , n$ to go to and presses that button (unless someone has already pressed it).
+\begin{enumerate}[(a)]
+	\item
+	Assume for this part only that the probabilities for floors $2, 3, . . . , n$ are equal.
+	Find the expected number of stops the elevator makes on floors $2, 3, . . . , n$.
+	
+	\item
+	Generalize (a) to the case that floors $2, 3, . . . , n$ have probabilities $p_2, . . . , p_n$ (respectively);
+	you can leave your answer as a finite sum.
+\end{enumerate}
+
+\solution
+
+\subsubsection{Terrible typesetting}
+
+$(a)$ Nulla malesuada porttitor diam. Donec felis erat, congue non, volutpat at, tincidunt tristique, libero. Vivamus viverra fermentum felis. Donec nonummy pellentesque ante. Phasellus adipiscing semper elit. Proinfermentummassa acquam. , at a,molestienec, leo. Maecenas lacinia. Nam ipsum ligula, eleifend at, accumsan nec, blandit Nunc eleifend consequat lorem. $(b)$ Quisque ullamcorper placerat ipsum. Cras nibh. Morbi vel ultrices. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In hac habitasse platea dictumst. Integer tempus convallis augue. Etiamfacilisis. Nunc elementumfermentumwisi. Aenean placerat.
+
+\subsubsection{Good typesetting}
+
+\begin{enumerate}[(a)]
+	\item
+	Nulla malesuada porttitor diam. Donec felis erat, congue non, volutpat at, tincidunt tristique, libero. Vivamus viverra fermentum felis. Donec nonummy pellentesque ante. Phasellus adipiscing semper elit. Proinfermentummassa acquam. Seddiamturpis,molestievitae, placerat a,molestienec, leo. Maecenas lacinia. Nam ipsum ligula, eleifend at, accumsan nec, suscipit a, ipsum. Morbi blandit ligula feugiat magna. Nunc eleifend consequat lorem. 
+		
+	\item
+	Quisque ullamcorper placerat ipsum. Cras nibh. Morbi vel justo vitae lacus tincidunt ultrices. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In hac habitasse platea dictumst. Integer tempus convallis augue. Etiamfacilisis. Nunc elementumfermentumwisi. Aenean placerat.
+\end{enumerate}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}*{Math mode}
+
+\subsection{Inline Math Mode}
+
+Quisque ullamcorper placerat ipsum. 
+										{\color{blue}$f(x)$} 
+Cras nibh. Morbi vel justo vitae lacus tincidunt ultrices. Loremipsum dolor sit amet, consectetuer adipiscing elit. In hac habitasse platea dictumst. Integer tempus convallis augue. Etiam facilisis. Nunc elementum fermentumwisi. Aenean placerat. 
+										{\color{blue}\(g(x)\)}
+Ut imperdiet, enim sed gravida sollicitudin, felis odio placerat quam, ac pulvinar elit purus eget enim. Nunc vitae tortor. Proin tempus nibh sit amet nisl. Vivamus
+								{\color{blue} \begin{math} P(x) = \frac{1}{x} \end{math}}
+quis tortor vitae risus porta vehicula
+
+\subsection{Display Math Mode with aligned equations}
+
+\subsubsection{Terrible typesetting using inline mode}
+
+cqeasqsase In hac habitasse platea dictumst. Integer tempus convallis augue. Proin Etiam fermentumwisi facilisis. Nunc elementum fermentumwisi. Aenean  Proin tempus nibh sit amet nisl placerat.
+$ \Delta_{t} = L ( \boldsymbol{Q}(t+1) ) - L( \boldsymbol{Q}(t) ) 
+= \frac{1}{2} \beta \Big[ (Q_{0}(t+1))^{2}  - (Q_{0}(t))^{2} \Big] + \frac{1}{2} \sum_{i \in \mathcal{N}} \Big[ (Q_{i}(t+1))^{2} - (Q_{i}(t))^{2} \Big]
+\overset{(a)}{\le} \frac{1}{2} \beta \left\{ \Big[ Q_{0}(t) + \sum_{i \in \mathcal{N}} E_{i}(t) x_{i}(t) - b \Big]^{2} \!\!\!- (Q_{0}(t))^{2} \right\} + \frac{1}{2} \sum_{i \in \mathcal{N}} \Big\{ \Big[ Q_{i}(t) + c_{i} - x_{i}(t) \Big]^{2} \!\!\!- (Q_{i}(t))^{2} \Big\}
+= \frac{1}{2} \beta \Big[ \sum_{i \in \mathcal{N}} E_{i}(t) x_{i}(t) - b  \Big]^{2} + \beta Q_{0}(t) \Big[ \sum_{i \in \mathcal{N}} E_{i}(t) x_{i}(t)  - b \Big]
++ \frac{1}{2} \sum_{i \in \mathcal{N}} \Big[ c_{i} - x_{i}(t) \Big]^{2} + \sum_{i \in \mathcal{N}} Q_{i}(t) \Big[  c_{i} - x_{i}(t) \Big] $.
+
+\subsubsection{Good typesetting}
+
+cqeasqsase In hac habitasse platea dictumst. Integer tempus convallis augue. Proin Etiam fermentumwisi facilisis. Nunc elementum fermentumwisi. Aenean  Proin tempus nibh sit amet nisl placerat.
+\begin{equation*}
+	\begin{aligned}
+		\Delta_{t} 
+		= &~L ( \boldsymbol{Q}(t+1) ) - L( \boldsymbol{Q}(t) ) \\
+		= &~\frac{1}{2} \beta \Big[ (Q_{0}(t+1))^{2}  - (Q_{0}(t))^{2} \Big] \\
+		+ &~\frac{1}{2} \sum_{i \in \mathcal{N}} \Big[ (Q_{i}(t+1))^{2} - (Q_{i}(t))^{2} \Big] \\ 
+		\overset{(a)}{\le} &~\frac{1}{2} \beta \left\{ \Big[ Q_{0}(t) + \sum_{i \in \mathcal{N}} E_{i}(t) x_{i}(t) - b \Big]^{2} \!\!\!- (Q_{0}(t))^{2} \right\} \\
+		+ &~\frac{1}{2} \sum_{i \in \mathcal{N}} \Big\{ \Big[ Q_{i}(t) + c_{i} - x_{i}(t) \Big]^{2} \!\!\!- (Q_{i}(t))^{2} \Big\} \\
+		= &~\frac{1}{2} \beta \Big[ \sum_{i \in \mathcal{N}} E_{i}(t) x_{i}(t) - b  \Big]^{2} + \beta Q_{0}(t) \Big[ \sum_{i \in \mathcal{N}} E_{i}(t) x_{i}(t)  - b \Big] \\
+		+ &~\frac{1}{2} \sum_{i \in \mathcal{N}} \Big[ c_{i} - x_{i}(t) \Big]^{2} + \sum_{i \in \mathcal{N}} Q_{i}(t) \Big[  c_{i} - x_{i}(t) \Big],
+	\end{aligned}
+\end{equation*}
+
+\subsubsection{Short-length math equation}
+
+\begin{enumerate}
+
+\item
+\[ 
+	\Delta_{t} = L ( \boldsymbol{Q}(t+1) ) - L( \boldsymbol{Q}(t) )
+\]
+
+\item
+$$
+	\Delta_{t} = L ( \boldsymbol{Q}(t+1) ) - L( \boldsymbol{Q}(t) )
+$$
+
+\item
+\begin{equation}
+	\Delta_{t} = L ( \boldsymbol{Q}(t+1) ) - L( \boldsymbol{Q}(t) )
+\end{equation}
+
+\end{enumerate}
+
+\end{homeworkProblem}
+
+\end{document}

@@ -1,0 +1,234 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{xifthen}
+\usepackage{xparse}
+\usepackage{amsmath, amssymb}
+\usepackage{lipsum}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%  
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+
+\NewDocumentEnvironment{homeworkProblem}{s m}{
+    \IfBooleanT{#1}{\newpage}
+    \section{Problem \arabic{homeworkProblemCounter} {\small (#2)}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Instructor
+%   - Class number
+%   - Name
+%   - Student ID
+
+\newcommand{\hmwkTitle}{Homework\ \#5}
+\newcommand{\hmwkDueDate}{September 18, 2022}
+\newcommand{\hmwkClass}{Probability and Mathematical Statistics}
+\newcommand{\hmwkClassInstructor}{Professor Ziyu Shao}
+
+\newcommand{\hmwkClassID}{\circled{0}}
+
+\newcommand{\hmwkAuthorName}{Zhu Zhelin}
+\newcommand{\hmwkAuthorID}{2021533077}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\\  \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 11:59am}\\
+   \vspace{2in}\Huge{\hmwkClassID}\\   
+   \vspace{2in}
+}
+
+\author{
+	Name: \textbf{\hmwkAuthorName} \\
+	Student ID: \hmwkAuthorID}
+\date{}
+
+
+\renewcommand{\part}[1]{\textbf{\large Part (\alph{partCounter})}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\Large Solution}}
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+% Problem 1
+\begin{homeworkProblem}{{\color{blue}mention the source of question}, \textit{e.g.}, BH CH0 \#1}
+\solution\\
+
+$P_k=P(N=K);P_0=0,P_1=0,P_2=0,P_3=p^3$,then to use first step method,I can define $S_i:$the result of $i_{th}$ trial ,$S_i=1$(H),$S_i=0$(T),P($S_i=1$)=p=$\frac{1}{2}$,P($S_i=0$)=q=$\frac{1}{2}$
+\begin{equation}
+\begin{aligned}
+	&P(N=k)=P(N=k,|S_1=0)P(S_1=0)+P(N=K|S_1=1,S_2=0)P(S_1=1,S_2=0)+P(N=K|S_1=1,S_2=1,S_3=0)\\
+	&\cdot P(S_1=1,S_2=1,S_3=0)=P(N=K-1)q+P(N=k-2)pq+P(N=k-3)p^2 q\\
+\end{aligned}
+\end{equation}
+then to use PGF $g(t)=E(t^N)=\sum\limits_{k=0}^{\infty}P_k t^k=\sum\limits_{k=3}^{\infty}P_k t^k=p^2q t^3+\sum\limits_{k=4}^{\infty}P_k t^k$
+\\on the other hand\\
+ $\sum\limits_{k=4}^{\infty}P_k t^k=q\sum\limits_{k=4}^{\infty}P_{k-1}t^k+pq\sum\limits_{k=4}^{\infty}P_{k-2}t^k+p^2 q\sum\limits_{k=4}^{\infty}P_{k-3}t^k$
+\\$g(t)-p^2qt^3=qt\cdot g(t)+pqt^2\cdot g(t)+p^2qt^3g(t) $
+then I can get g(t)=$\frac{-p^2qt^3}{qt+pqt^2+p^2qt^3-1}$\\
+E(N)=$g'(t)|_{t=1}$,since p=q=$\frac{1}{2}$,so I can get that $g'(t)=\frac{24t^2-8t^3-2t^4}{(4t+2t^2+t^3-8)^2}$,$g'(1)=14$\\
+Var(N)=$E(N^2)-(E(N))^2=E(N(N-1))+E(N)-(E(N))^2=g''(1)+E(N)-(E(N))^2=142$
+\end{homeworkProblem}
+
+% Problem 2
+\begin{homeworkProblem}*{BH CH0 \#2}
+	\begin{enumerate}[(a)]
+\item E(T)=E($e^{-3X}$)=$\sum_{k=0}^{\infty}\frac{e^{-3k}\cdot e^{-\lambda}\lambda^k}{k!}=\sum_{k=0}^{\infty}\frac{e^{-\lambda}(\frac{\lambda}{e^3})^k}{k!}=e^{(\frac{1}{e^3}-1)\lambda}$,since it is not equal to $e^{-3\lambda}$,so it isn't unbiased.
+\item To show is to calculate $E(g(X))=\sum_{k=0}^{\infty}\frac{(-2)^{k} e^{-\lambda} \lambda ^k}{k!}=e^{-\lambda}\sum_{k=0}^{\infty}\frac{(-2\lambda)^{k}}{k!}=e^{-3\lambda}=\theta$\\
+,so $E(g(X))-\theta=0$,\\so it turns out to be unbiased
+\item The estimator g(X) could be negative and will be very large in terms of absolute value if X is large,,while $\theta $ is  a positive small number ,so we can change it to a function $h(X)$
+$$
+h(X)=	
+\begin{cases}
+	1 & X=2k(k\in N)\\
+	0 & X=2k+1(k\in N)
+\end{cases}
+$$
+since $\theta\leq 1$,it is strictly greater.
+\end{enumerate}
+
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}*{BH CH0 \#3}
+	\begin{enumerate}[(a)]
+		\item To find the expected number ,we first define $X$ as the number of times all sixes have achieved all sixes and we can use indicator r.v. $I_j$ to represent if the $j_{th}$ roll satisfy all sixes ,the trial satify a possibility $p=(\frac{1}{6})^n$,it satisfy X$\sim Binom(4\cdot 6^{n-1},(\frac{1}{6})^n)$,so E$(X)=4\cdot 6^{n-1}\times (\frac{1}{6})^n=\frac{2}{3}$
+		\item when n is a very large number ,the $(\frac{1}{6})^n$ will turn to be very small,but among the $4\cdot 6^{n-1}$ trials ,the  toatl probability $\frac{2}{3}$,$X\sim Binom(4\cdot 6^{n-1},(\frac{1}{6})^n)$,so i can use X$~Pois(\frac{2}{3})$,P(X$\geq 1$)=1-P(X=0)=1-$e^{-\lambda}=1-e^{-\frac{2}{3}}$
+\item It will not change ,since the linearity of expectation doesn't change,we can easily conclude that $E(X)=E(I_1+I_2+\cdots)$can be divided into $E(I_1)+E(I_2)+\cdots E(I_n)$ though the variable is dependent ,the expectation doesn't change,so the answer is same.
+
+	\end{enumerate}
+	
+\end{homeworkProblem}
+\begin{homeworkProblem}*{BH CH0 \#4}
+	\begin{enumerate}[(a)]
+\item considering when X=k,it is same as randomly choose m+k without replacement and the last time we get the last element as the labeled,the last time the probability we get the labeled is$\frac{n-m+1}{N-m-k+1}$,the probability to get (m-1) labeled in choosing m+k elements,is $\frac{\binom{n}{m-1}\cdot\binom{N-n}{k}}{\binom{N}{m+k-1}}$
+so the total probability is $P(X=k)=\frac{\binom{n}{m-1}\cdot\binom{N-n}{k}}{\binom{N}{m+k-1}}\cdot \frac{n-m+1}{N-m-k+1}$
+ \\we can easily get that Y=X+m so $P(Y=k)=P(X=k-m)=\frac{\binom{n}{m-1}\cdot\binom{N-n}{k-m}}{\binom{N}{k-1}}\cdot \frac{n-m+1}{N-k+1}$
+\item  there are n labeled elks,so we can use the labeled elks as indicator variables in the N trials,just as $I_j:$ whether this capture happens between the elks labeled j and j-1,and the probability I can get is $\frac{1}{n+1}$,then I can define that $I_{ij}:$which is the indicator variable about whether the $j_{th}$ unlabeled elk captured between $i$ and $i-1$ labeled elk,then the probability of $I_{ij}=\frac{1}{n+1}$,then 
+$E(X)=E(X_1+X_2+\cdots X_n)=E(X_1)+E(X_2)\cdots=E(I_{11}+I_{12}+I_{13}\cdots)+E(I_{21}+I_{22}+\cdots)\cdots=\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{N-n}\frac{1}{n+1}=\frac{m(N-n)}{n+1}$
+$E(Y)=E(X+m)=\frac{mN+m}{n+1}$
+\item	since the sample is fixed,I can represent E(Y)=s,supposing Z as the number of labeled elks in the sampling Z$\sim Hgeom(n,N-n,s)$,then first I want to calculate E(Z)
+\\
+$E(Z)=\sum\frac{k\binom{n}{k}\binom{N-n}{s-k}}{\binom{N}{s}}=\sum\frac{n\binom{n-1}{k-1}\binom{N-n}{s-k}}{\binom{N}{s}}=n\frac{\binom{N-1}{s-1}}{\binom{N}{s}}=\frac{nE(Y)}{N}=\frac{(nN+n)m}{nN+N}$ it is less than m,(specially when N is very large,these two are very close)  
+\end{enumerate}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}*{BH CH0 \#6}
+\begin{enumerate}[(a)]
+	\item I can seperate it into two parts during the exploration phase ,you randomly eat k different  dishes,so on average ,we try the dishes rank$=\frac{n+1}{2}$ the total number of ranks in this phase is $\frac{n+1}{2}k$ during the exploitation phase,you will always choose X so using LOTP ,we can get $\sum P(X=k)X(m-k)$=$E(X)(m-k)$,so the total is $\frac{n+1}{2}k+E(X)(m-k)$
+	\item the corresponding sequence  when X=j should be has the largest rank j,and the other $k-1$ dishes rank smaller than  j,which means pick from $1-(j-1)$so the PMF P(X=k)=$\frac{\binom{j-1}{k-1}}{\binom{n}{k}}$
+	\item  first,I want to use two equation\begin{enumerate}[i]
+	\item j$\binom{j-1}{k-1}$=$k\binom{j}{k}$ using choosing captain or choosing monitor story telling to prove
+	\item  $\sum\limits_{j=k}^{j=n}\binom{j}{k}=\binom{n+1}{k+1}$ considering a queue with n+1 people with diffrent ages,choosing k+1 from n+1 is equal to considering choosing j+1 oldest person first,than choose the k people smaller than him.
+ 
+	\end{enumerate}
+	using following equation,E(X)=$\sum\limits_{j=k}^{j=n}\frac{\binom{j-1}{k-1}j}{\binom{n}{k}}=\sum\limits_{j=k}^{j=n}\frac{\binom{j}{k}k}{\binom{n}{k}}=\frac{k(n+1)}{k+1}$ 
+\item we can represent the whole function as $f(k)=\frac{n+1}{2}k+\frac{k(n+1)(m-k)}{k+1}$ 
+then to solve the problem $f'(k)=0$ I can get that$(k+1)^2=2(m+1)$,since k is larger than zero,so $k=\sqrt {2m+2}-1$
+\end{enumerate}
+\end{homeworkProblem}
+
+\end{document}

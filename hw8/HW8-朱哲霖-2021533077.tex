@@ -1,0 +1,198 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{xifthen}
+\usepackage{xparse}
+\usepackage{amsmath, amssymb}
+\usepackage{lipsum}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%  
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+
+\NewDocumentEnvironment{homeworkProblem}{s m}{
+    \IfBooleanT{#1}{\newpage}
+    \section{Problem \arabic{homeworkProblemCounter} {\small (#2)}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Instructor
+%   - Class number
+%   - Name
+%   - Student ID
+
+\newcommand{\hmwkTitle}{Homework\ \#8}
+\newcommand{\hmwkDueDate}{September 18, 2022}
+\newcommand{\hmwkClass}{Probability and Mathematical Statistics}
+\newcommand{\hmwkClassInstructor}{Professor Ziyu Shao}
+
+\newcommand{\hmwkClassID}{\circled{0}}
+
+\newcommand{\hmwkAuthorName}{Zhu Zhelin}
+\newcommand{\hmwkAuthorID}{2021533077}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\\  \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 11:59am}\\
+   \vspace{2in}\Huge{\hmwkClassID}\\   
+   \vspace{2in}
+}
+
+\author{
+	Name: \textbf{\hmwkAuthorName} \\
+	Student ID: \hmwkAuthorID}
+\date{}
+
+
+\renewcommand{\part}[1]{\textbf{\large Part (\alph{partCounter})}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\Large Solution}}
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+% Problem 1
+\begin{homeworkProblem}{{\color{blue}mention the source of question}, \textit{e.g.}, BH CH0 \#1}
+	\begin{enumerate}[(a)]
+\item the MGF of X is $E(e^{tX})=E(e^{t(I(A_1)+I(A_2)+I(A_3)+\cdots)})$ since all the events are independent this is equal to $\prod \limits_{i=0}^n E(e^{tI(A_i)})$ considering $A_i$ since it is a bernoulli trial , $E(e^{tI(A_i)})=p_i e^{t}+q_i$,so the total is $\prod \limits_{i=0}^n (p_i e^{t}+1-p_i)$
+\item the MGF is equal to $\prod \limits_{i=1}^n(p_i(e^{t}-1)+1)$ using the approximation ,we can get this equal to $\prod \limits_{i=0}^n(e^{p_i(e^{t}-1)})$,since the total sum of $p_i=\lambda$,so this is equal to $e^{\lambda(e^{t}-1)}$ since the event can be an approximation of possion process, considering the true possion process $X\sim $ Pois($\lambda$)and its MGF $E(e^{tX})=\sum\limits_{k=0}^{\infty}e^{tk}\frac{e^{-\lambda}(\lambda)^{k}}{k!}=\sum\limits_{k=0}^{\infty}e^{tk}\frac{e^{-\lambda}(e^{t}\lambda)^k}{k!}=e^{\lambda(e^t-1)}$,since it is approximation about pois,so in the limit context the approximation is equal to pois. 
+	\end{enumerate}
+\end{homeworkProblem}
+
+% Problem 2
+\begin{homeworkProblem}*{BH CH0 \#2}
+\begin{enumerate}[(a)]
+\item  to calculate P(L=l,M=m),when $m<l$ the joint PMF is equal to 0,when $m=l,$ if and only if $X=Y=l$ the PMF=$q^{2l}p^2$,when $m>l$,the PMF is the sum of $P(X=l,Y=M)+P(X=m,Y=l)=2q^{l+m}p^2$ since given L=10 $P(M=5|L=10)=0,P(M=5)\neq 0$,so they are not independent.
+\item $P(L=l)=\sum\limits_{k=l}^{\infty} P(L=l,M=k)=q^{2l}p^2+\sum\limits_{m=l+1}^{\infty}2q^{l+m}p^{2}=q^{2l}(p^2+2pq)$ ,using the story ,considering L=l,it means in the l trial before,both X and Y is failure $q^{2l}$,considering the l+1 trial there must be at least one success the both success $p^2$,only one success $2pq$ add them all and multiply the previous chance,we can get that$q^{2l}(p^2+2pq)$,on another way ,we can see at least one success as one bernoulli success,so the PMF of L it has $Bern(1-q^2)$ since $p^{2}+2pq+q^{2}=1,p^{2}+2pq=1-q^{2}$
+\item since $L+M=X+Y$ $E(L+M)=E(X+Y)$$E(L)+E(M)=2E(X)=2\frac{q}{p}$,$E(L)=\sum\limits_{l=0}^{n}lq^{2l}(p^2+2pq)=\frac{q^2}{1-q^2}$,so $E(M)=\frac{q(1+2q)}{p(1+q
+)} $ 
+\item P(L=l,M-L=k) when k=0 the joint PMF is $q^{2l}p^2$,when k$>0$,then PMF is $P(X=l,Y=l+k)+P(X=l+k,Y=l)=2q^{2l+k}p^2$ ,it can be divided into $f(l)g(k)$ where P$(L=l)=q^{2l}(p^2+2pq)$ g(k)=$\frac{2p^2q^{k}}{p^2+2pq}(k>0)$,$\frac{p^2}{p^2+2pq}(k=0)$ since it can be divided into two function $f(l)g(k)$,it is independent
+\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}*{BH CH0 \#3}
+\begin{enumerate}[(a)]
+	\item P(T$\leq t|X=x$)=$P(Y\leq t-x)$ since Y$\sim Expo(\lambda)$,the CDF is $1-e^{-\lambda(t-x)} $$(t> x)$,CDF is 0$t\leq x$
+	\item we can easily get this by differntiating $f_{T|X}(t|X=x)=\lambda e^{-\lambda(t-x)}$ (when t$\geq x$),else(0),to check the validation,the PDF is obviously larger than 0,then $\int _{x}{\infty}\lambda e^{-\lambda(t-x)}dt=1$
+\item let $t>0$ $f_{X|T}(x|t)=\frac{f_{T|X}(t|x)f_X(x)}{f_{T}(t)}\propto f_{T|X}(t|x)f_{X}(x)=\lambda^{2}e^{-\lambda t} $ it is a constant so the event $X|T\sim Unif(0,T)$ so the conditional PDF of X is $\frac{1}{t}$
+\item $f_T(t)=\frac{f_{T|X}(t|x)f_{X}(x)}{f{X|T}(x|t)}=\frac{\lambda^2e^{-\lambda t}}{\frac{1}{t}}=\lambda^{2}te^{-\lambda t}$
+\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}*{BH CH0 \#4}
+\begin{enumerate}[(a)]
+\item the marginal CDF is $P(M\leq m)=P(U_1\leq m,U_2\leq m,U_3\leq m)$since the random variable is independent =$m^{3}$ so PDF is $3m^2$,$P(M\leq m)=P(L\leq l,M\leq m)+P(L\geq l,M\geq m)$ $P(L\geq l,M\leq m)=P(l\leq U_1\leq m,l\leq U_2\leq m,l\leq U_3\leq m)$ when $l>m$,this is equal to 0,so the joint CDF is $m^{3}-(m-l)^{3}$,then differntiating it we can get the joint PDF is $6(m-l)$
+\item The marginal PDF of $f_{L}(l)=3(1-l)^2$ it is the sum of $(P(U_i=l,U_j\geq l,U_k\geq l))$,$f_{M|L}(m|l)=\frac{f(m,l)}{f_{L}(l)}=\frac{2(m-l)}{(1-l)^2}$
+\end{enumerate}
+\end{homeworkProblem}
+\begin{homeworkProblem}*{BH CH0\#5}
+    \begin{enumerate}[(a)]
+        \item let q=1-p,let X be the trial vector$\sim Mult_{k}(n,(p^2,2pq,q^2)) $ $P(X_1=x_1,X_2=x_2,X_3=x_3)=\frac{n!}{x_1!x_2!x_3!}p^{2x_1}(2pq)^{x_2}q^{2x_3}$
+        \item We can see it as the Bernoulli trial $\sim(1-q^2)$ when choosing a person,if he is $aa$ then failure,otherwise success,so the distribution of number in the sample who have an A$\sim Bin(n,1-q^2)$
+        \item  it can be seen as 2n Bernoulli trials when assign A success,assign a failure,so for the total genes ,let Y be the genes contain A$Y\sim Bin(2n,p)$
+        \item $x_1,x_2,x_3$ be the observed data,according to (a) the possibility is $\propto p^{2x_1}(pq)^{x_2}q^{2x_3}$,let $L(p)=p^{2x_1}(pq)^{x_2}q^{2x_3}$to maximum the possibility,we can take the log for the both side and take the differntiating ,let it to be 0,$logL(p)=(2x_1+x_2)logp+(x_2+2x_3)log(1-p)$ let its derivative to be zero,I can get that $p=\frac{2x_1+x_2}{2n}$
+        \item  We can see it as many times of Bernoulli trials ,the observed data Y indicate how many aa are found$\sim Bin(n,q^2)$ so to find $L(q)$ we want to maximum$q^{2y}(1-q^2)^{n-y}$ using the same technique,we can get $log(L(q))=2yLog(q)+(n-y)log(1-q^2)$ then to calculate the derivative,let it equal to 0,we can get $q=\sqrt{\frac{y}{n}}$ so p=$1-\sqrt{\frac{y}{n}}$
+    \end{enumerate}
+\end{homeworkProblem}
+\end{document}

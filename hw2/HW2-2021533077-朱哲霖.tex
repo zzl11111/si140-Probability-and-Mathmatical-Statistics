@@ -1,0 +1,249 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{xifthen}
+\usepackage{xparse}
+\usepackage{amsmath, amssymb}
+\usepackage{lipsum}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%  
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+
+\NewDocumentEnvironment{homeworkProblem}{s m}{
+    \IfBooleanT{#1}{\newpage}
+    \section{Problem \arabic{homeworkProblemCounter} {\small (#2)}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Instructor
+%   - Class number
+%   - Name
+%   - Student ID
+
+\newcommand{\hmwkTitle}{Homework\ \#2}
+\newcommand{\hmwkDueDate}{September 2, 1999}
+\newcommand{\hmwkClass}{Probability and Mathematical Statistics}
+\newcommand{\hmwkClassInstructor}{Professor Ziyu Shao}
+
+\newcommand{\hmwkClassID}{\circled{0}}
+
+\newcommand{\hmwkAuthorName}{Zhu zhelin}
+\newcommand{\hmwkAuthorID}{2021533077}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\\  \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 11:59am}\\
+   \vspace{2in}\Huge{\hmwkClassID}\\   
+   \vspace{2in}
+}
+
+\author{
+	Name: \textbf{\hmwkAuthorName} \\
+	Student ID: \hmwkAuthorID}
+\date{}
+
+
+\renewcommand{\part}[1]{\textbf{\large Part (\alph{partCounter})}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\Large Solution}}
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+% Problem 1
+\begin{homeworkProblem}{{\color{blue} Bertrands Box Paradox}, \#1}
+\solution\\
+{\LARGE
+according to the law of total probability that $$P(B|E)=\sum_{i=1}^{n}P(B|A_i,E)P(A_i|E)$$
+,then we can define that
+\begin{enumerate}
+	\item $A_1$:(a) box $A_2$:(b) box $A_3$:(c)box
+	\item E:Happens to be a gold coin
+	\item B:the probability of the next coin drawn from the same box also being a gold coin.
+
+\end{enumerate}
+first,using Bayes's rule,I can calculate$P(A_i|E)=\frac{P(E|A_i)\cdot P(A_i)}{P(E)}$,seperately,they are$\frac{2}{3},0,\frac{1}{3}$
+so we can get the solution$1\cdot \frac{2}{3} =\frac{2}{3}\approx 0.6777$
+}
+\end{homeworkProblem}
+
+% Problem 2
+\begin{homeworkProblem}*{BH CH0 \#2}
+\solution
+\\{\large
+\begin{enumerate}
+	\item[(a)]using Bayes's rule we first define:A:Alice actually send a 1 B:Bob receives a 1 $A^c:$Alice actually send a 0
+then we use Bayers'rule,it is equal to calculate the probability of $P(A|B)=\frac{P(B|A)\cdot P(A)}{P(B)},$according to the law of total probability$P(B)=P(B|A)\cdot P(A)+P(B|A^c)\cdot P(A^C)=0.475$,then $P(A|B)=\frac{18}{19}\approx 0.9474$
+	\item[(b)]  we define the $A_i$in an increasing number order,$A_1:$the event of receiving $000$,$A_2:$receiving $001$,$A_3:$receiving $010$,$A_4:$receiving $011$,$A_5:$receiving $100$,$A_6:$receiving $101$,$A_7$:receiving $110$,$A_8:$receiving $111$,B:Alice intened to send a 1,$B^c:$Bob intended to send a 0
+I want to calculate $P(B|A_7)=\frac{P(A_7|B)\cdot P(B)}{P(A_7)}$ while $P(A_7)=P(A_7|B)\cdot P(B)+P(A_7|B^c)\cdot P(B^c)=0.0416875$ so the result is $\approx$0.97151424287856
+\end{enumerate}
+
+}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}*{\#3}
+\solution
+\\
+{\large
+\begin{enumerate}[(a)]
+\item since those conditions are independent
+This is equal to calculate that $P(L|M_j)$ using Bayer's rule we can get that $=\frac{P(M_j|L)\cdot P(L)}{P(M_j)}$
+then we use the law of probability to calculate $P(M_j)=P(M_j|L)\cdot P(L)+P(M_j|L^c)\cdot P(L^C)$ since $P(M_j^c|L^c)+P(M_j|L^c)=1$,so I can get that$P(M_j|L^c)=0.1$ so $P(M_j)=0.9\cdot0.1+0.1\cdot 0.9=0.18$
+so the solution is $\frac{0.9\cdot 0.1}{0.18}=0.5.$
+\item  this condition is equal to calculate that $$P(L|M_1,M_2)=\frac{P(M_1,M_2|L)\cdot P(L)}{P(M_1,M_2)}=
+\frac{0.9\cdot 0.9\cdot 0.1}{P(M_1,M_2|L)
+\cdot P(L)+P(M_1,M_2|L^c)\cdot P(L^c)}$$
+$$
+=\frac{0.081}{0.081+0.01\cdot 0.9}=0.9$$
+\item Yes,according to the conherence of the Bayer's rule,it isn't related with the order of condition given,first update $M_1$ and in the condition of $M_1$ happens then $M_2$ is the same as
+update the condition $M_1 \cap M_2$ at the same time.
+\end{enumerate}
+}
+
+\end{homeworkProblem}
+\begin{homeworkProblem}*{\#4}
+\begin{enumerate}[(a)]
+    \item 
+    the students who admit can be divided into three parts
+
+\begin{enumerate}
+    \item[(i)] good at math,good at baseball
+    \item[(ii)] good at math,bad at  baseball
+    \item[(iii)] bad at math,good at baseball  
+\end{enumerate}
+conditioning on students good at math get the iii out ,who are good at baseball,it is the same as kick out people who good at baseball from the total,decrease the percentage who good at baseball among students,\\
+so the probability decrease,thus proved
+\item first to consider$P(A|B,C)$,according to the given condition that$A\cup B=C$and A ,B are independent,so $P(A|B,C)=P(A|B)=P(A)$
+then considering($P(A|C)=\frac{P(A)}{P(C)}$)since P(C)<1,so $P(A|C)>P(A)=P(A|B,C)$thus,proved.
+\end{enumerate}
+\end{homeworkProblem}
+\begin{homeworkProblem}*{\#5}
+    \solution
+    \\
+    according to Bayer's rule ,we can easily get that 
+    \begin{equation}
+        \notag
+        \small
+    \begin{aligned}
+    &P(spam|W_1^c,W_2^c,\cdots,W_{22}^c,W_{23},W_{24}^c,\cdots,W_{63}^c,W_{64},W_{65},W_{66}^c\cdots W_{100}^c)\\
+    &=\frac{P(W_1^c,W_2^c,\cdots,W_{22}^c,W_{23},W_{24}^c, W_{63}^c,W_{64},W_{65},W_{66}^c
+    \cdots W_{100}^c|spam)\cdot P(spam) }
+    {P(W_1^c,W_2^c,\cdots,W_{22}^c,W_{23},W_{24}^c,\cdots,W_{63}^c,W_{64},W_{65},W_{66}^c\cdots W_{100}^c)}
+    \\
+    &=\frac{(1-p_1)(1-p_2)\cdots(1-p_{22})(p_{23})(1-p_{24})\cdots(1-p_{63})(p_{64})(p_{65})(1-p_{66})\cdots(1-p_{100})\cdot p}{P(W_1^c,W_2^c,\cdots,W_{22}^c,W_{23},W_{24}^c, W_{63}^c,W_{64},W_{65},W_{66}^c
+    \cdots W_{100}^c|spam)\cdot P(spam)+P(W_1^c,W_2^c,\cdots|not spam)P(not spam)}
+\end{aligned}   
+\end{equation}
+as the equation is to long  we define that 
+\begin{enumerate}
+    \item $a=(1-p_1)(1-p_2)\cdots(1-p_{22})(p_{23})(1-p_{24})\cdots(1-p_{63})(p_{64})(p_{65})(1-p_{66})\cdots(1-p_{100})$
+    \item $b=(1-r_1)(1-r_2)\cdots(1-r_{22})(r_{23})(1-r_{24})\cdots(1-r_{63})(r_{64})(r_{65})(1-r_{66})\cdots(1-r_{100})$
+\end{enumerate}
+\begin{flushleft}
+so the answer is$
+=\frac{a\cdot p}{a\cdot p+b\cdot (1-p)}$
+\end{flushleft}
+\end{homeworkProblem}
+\end{document}
